@@ -1,0 +1,19 @@
+<ion-view view-title="Spotifoo">
+  <ion-content>
+  <div class="list list-inset">
+    <div ng-if="!search.query" class="item">Enter an artist's name to search:</div>
+    <label class="item item-input">
+      <i class="icon ion-search placeholder-icon"></i>
+      <input type="text" ng-model="search.query" placeholder="Artist name" ng-change="searchArtist()">
+    </label>
+  </div>
+    <ion-list>
+      <ion-item ng-if="artists.length > 0"><span ng-show="artists.length < 20">{{artists.length}}</span><span ng-hide="artists.length < 20">20+</span> results.</ion-item>
+      <ion-item class="item-thumbnail-left" ng-repeat="artist in artists | orderBy: '-popularity'" type="item-text-wrap" href="#/tab/artists/{{artist.id}}">
+        <img ng-src="{{artist.images[0].url}}">
+        <h2>{{artist.name}}</h2>
+        <p>Popularity: {{artist.popularity}}</p>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>
